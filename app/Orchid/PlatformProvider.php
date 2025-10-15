@@ -48,6 +48,7 @@ class PlatformProvider extends OrchidServiceProvider
 
                Menu::make('Mission & Vision')
                 ->icon('bs.collection')
+                ->route('about.boa.mission')
                   ->divider()
                 ,
 

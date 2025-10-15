@@ -22,6 +22,7 @@ use Tabuna\Breadcrumbs\Trail;
 use App\Orchid\Screens\AboutBoaHistoryScreen;
 use App\Orchid\Screens\AboutBoaHistoryEditScreen;
 
+use App\Orchid\Screens\AboutBoaMissionScreen;
 /*
 |--------------------------------------------------------------------------
 | Dashboard Routes
@@ -108,3 +109,5 @@ Route::screen('/examples/cards', ExampleCardsScreen::class)->name('platform.exam
 Route::screen('/about-boa-history', AboutBoaHistoryScreen::class)->name('about.boa.history');
 
  Route::screen('about-boa-history/{id}/edit', AboutBoaHistoryEditScreen::class)->name('about.boa.history.edit');
+
+ Route::screen('/about-boa-mission', AboutBoaMissionScreen::class)->name('about.boa.mission');
