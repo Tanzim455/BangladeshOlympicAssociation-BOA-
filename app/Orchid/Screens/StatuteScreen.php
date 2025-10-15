@@ -3,50 +3,56 @@
 namespace App\Orchid\Screens;
 
 use Orchid\Screen\Screen;
-use App\Models\AboutBoaMission;
+use App\Models\Statute;
 use Orchid\Support\Facades\Alert;
 use Orchid\Screen\Actions\ModalToggle;
 use Orchid\Support\Facades\Layout;
 use Orchid\Screen\Actions\Button;
-use App\Orchid\Layouts\AboutBoaHistoryListLayout;
 
-use App\Orchid\Layouts\AboutBoaMissionLayout;
+use Orchid\Screen\Fields\Attach;
+
 use Illuminate\Http\Request;
 use Orchid\Screen\Layouts\Modal;
 use Orchid\Screen\Fields\Quill;
 use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Layouts\Rows;
+use Orchid\Attachment\File;
 
-
-class AboutBoaMissionScreen extends Screen
+class StatuteScreen extends Screen
 {
-    /**
+   /**
      * @var AboutBoaMission
      */
-    public $about_boa_mission;
+     public $statute;
 
     /**
      * Query data.
      *
-     * @param AboutBoaMission $about_boa_history;
+     * @param Statute $statute;
      * @param Request $request;
      *
      * @return array
      */
       
-    public function query(AboutBoaMission $about_boa_mission): iterable
+    public function query(Statute $statute): iterable
     {
       
          return [
-            'about_boa_mission' => $about_boa_mission,
-             'about_boa_missions' => AboutBoaMission::paginate(),
+            'statute' => $statute,
+             'statutes' => Statute::paginate(),
         ];
     
         
     }
+
+    /**
+     * The name of the screen displayed in the header.
+     *
+     * @return string|null
+     */
     public function name(): ?string
     {
-        return 'Mission';
+        return 'Statute';
     }
 
     /**
@@ -54,20 +60,19 @@ class AboutBoaMissionScreen extends Screen
      *
      * @return \Orchid\Screen\Action[]
      */
-    public function commandBar(): iterable
+   public function commandBar(): iterable
     {
         return [
            
-                 ModalToggle::make('Add Mission')
-            ->modal('Add Mission')
+                 ModalToggle::make('Add Statute')
+            ->modal('Add Statute')
             ->method('createOrUpdate')
             ->icon('plus'),
 
             
         ];
     }
-
-   /**
+    /**
      * The screen's layout elements.
      *
      * @return \Orchid\Screen\Layout[]|string[]
@@ -75,9 +80,9 @@ class AboutBoaMissionScreen extends Screen
     public function layout(): iterable
     {
         return [
-            Layout::modal('Add Mission', [
+            Layout::modal('Add Statute', [
             Layout::rows([
-                Input::make('about_boa_mission.title')
+                Input::make('statute.title')
                     ->title('Title')
                     ->placeholder('Attractive but mysterious title')
                     ->help('Specify a short descriptive title for this post.'),
@@ -86,36 +91,42 @@ class AboutBoaMissionScreen extends Screen
 
               
 
-                Quill::make('about_boa_mission.description')
-                    ->title('Main text'),
+               Input::make('statute.file')->type('file'),
 
             ])
         ]) ->size(Modal::SIZE_LG),
-             AboutBoaMissionLayout::class
+             
         ];
         
     }
     public function createOrUpdate(Request $request)
     {
-        $request->validate([
-            'about_boa_mission.title' => 'required',
-            'about_boa_mission.description' => 'required',
+               
+        $validate= $request->validate([
+            'statute.title' => 'required',
+          
         ]);
+        $request_all=$request->all();
+        $requested_file=$request_all['statute']['file'];
+      
+       $path = "pdfs";
+    $file = new File($requested_file);
+ 
+    $attachment = $file->path($path)->load();
+        
+        $this->statute->fill($request->get('statute'))->save();
 
-        $this->about_boa_mission->fill($request->get('about_boa_mission'))->save();
-
-        Alert::info('Boa Mission has been successfully created');
+        Alert::info('Statute has been successfully created');
 
         return redirect()->route('about.boa.mission');
     }
     public function remove(Request $request)
     {
          
-        AboutBoaMission::findOrFail($request->get('id'))->delete();
+        Statute::findOrFail($request->get('id'))->delete();
 
         Alert::info('You have successfully deleted the post.');
 
         return redirect()->route('about.boa.history');
     }
-    
 }

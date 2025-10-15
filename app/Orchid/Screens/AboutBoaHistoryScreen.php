@@ -35,7 +35,7 @@ class AboutBoaHistoryScreen extends Screen
       
          return [
             'about_boa_history' => $about_boa_history,
-             'about_boa_histories' => AboutBoaHistory::get(),
+             'about_boa_histories' => AboutBoaHistory::paginate(),
         ];
     
         

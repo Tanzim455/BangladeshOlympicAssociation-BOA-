@@ -54,8 +54,9 @@ class PlatformProvider extends OrchidServiceProvider
 
             Menu::make('Statute')
                 ->icon('bs.card-list')
-                 ->divider()
-                ->active('*/examples/form/*'),
+                 ->route('statute.index')
+                 ->divider(),
+               
 
             Menu::make('Activities')
                 ->icon('bs.window-sidebar')
