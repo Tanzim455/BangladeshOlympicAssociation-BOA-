@@ -40,10 +40,8 @@ class AboutBoaHistoryListLayout extends Table
     {
         return [
             TD::make('id', 'ID'),
-              TD::make('title', 'Title')
-                ->render(function (AboutBoaHistory $about_boa_history) {
-                    return Link::make($about_boa_history->title);
-                }),
+              TD::make('title', 'Title'),
+           
             TD::make('description', 'Description'),
                
             TD::make('created_at', 'Created'),

@@ -17,6 +17,8 @@ use Orchid\Screen\Fields\Quill;
 use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Layouts\Rows;
 use Orchid\Attachment\File;
+use App\Orchid\Layouts\StatuteLayout;
+
 
 class StatuteScreen extends Screen
 {
@@ -93,8 +95,10 @@ class StatuteScreen extends Screen
 
                Input::make('statute.file')->type('file'),
 
-            ])
+            ]),
+            
         ]) ->size(Modal::SIZE_LG),
+        StatuteLayout::class,
              
         ];
         
