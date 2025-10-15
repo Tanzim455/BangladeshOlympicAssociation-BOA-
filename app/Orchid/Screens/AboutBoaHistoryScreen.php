@@ -13,7 +13,7 @@ use Orchid\Support\Facades\Alert;
 use Orchid\Screen\Actions\ModalToggle;
 use App\Orchid\Layouts\AboutBoaHistoryListLayout;
 
-
+use Orchid\Screen\Layouts\Modal;
 
 class AboutBoaHistoryScreen extends Screen
 {
@@ -93,7 +93,7 @@ class AboutBoaHistoryScreen extends Screen
                     ->title('Main text'),
 
             ])
-        ]),
+        ]) ->size(Modal::SIZE_LG),
             AboutBoaHistoryListLayout::class
         ];
         

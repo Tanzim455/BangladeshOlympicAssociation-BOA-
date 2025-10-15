@@ -55,8 +55,12 @@ class AboutBoaHistoryListLayout extends Table
                     ->list([
 
                         Link::make(__('Edit'))
-                          
-                            ->icon('bs.pencil'),
+                            
+                            ->icon('bs.pencil')
+                            ->route('about.boa.history.edit', [
+                                'id' => $about_boa_history->id,
+                            ])
+                            ,
 
                         Button::make(__('Delete'))
                         

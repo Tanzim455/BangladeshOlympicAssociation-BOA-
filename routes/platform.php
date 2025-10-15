@@ -20,7 +20,7 @@ use App\Orchid\Screens\User\UserProfileScreen;
 use Illuminate\Support\Facades\Route;
 use Tabuna\Breadcrumbs\Trail;
 use App\Orchid\Screens\AboutBoaHistoryScreen;
-
+use App\Orchid\Screens\AboutBoaHistoryEditScreen;
 
 /*
 |--------------------------------------------------------------------------
@@ -106,3 +106,5 @@ Route::screen('/examples/cards', ExampleCardsScreen::class)->name('platform.exam
 // Route::screen('idea', Idea::class, 'platform.screens.idea');
 //Project routes
 Route::screen('/about-boa-history', AboutBoaHistoryScreen::class)->name('about.boa.history');
+
+ Route::screen('about-boa-history/{id}/edit', AboutBoaHistoryEditScreen::class)->name('about.boa.history.edit');
