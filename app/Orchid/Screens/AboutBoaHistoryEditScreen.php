@@ -9,6 +9,9 @@ use Orchid\Screen\Fields\Quill;
 use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Layouts\Modal;
 use Orchid\Support\Facades\Layout;
+use Illuminate\Http\Request;
+
+
 
 class AboutBoaHistoryEditScreen extends Screen
 {
@@ -62,7 +65,7 @@ class AboutBoaHistoryEditScreen extends Screen
         return [
             Button::make('Update')
                 ->icon('note')
-                ->method('createOrUpdate')
+                ->method('updateHistory')
                 
         ];
     }
@@ -90,6 +93,26 @@ class AboutBoaHistoryEditScreen extends Screen
 
             ])
              ];
+    }
+
+    public function updateHistory(Request $request)
+    {
+         $validate=$request->validate([
+            'about_boa_history.title' => 'required',
+            'about_boa_history.description' => 'required',
+        ]);
+        $title=$validate['about_boa_history']['title'];
+       $description=$validate['about_boa_history']['description'];
+        $about_boa_history=AboutBoaHistory::findOrFail($this->request_id);
+      
+        $about_boa_history->update([
+            'title' => $title,
+            'description' => $description,
+        ]);
+
+        return redirect()->route('about.boa.history');
+      
+            
     }
 
 }

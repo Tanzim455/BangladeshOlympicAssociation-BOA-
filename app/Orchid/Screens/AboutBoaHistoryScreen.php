@@ -117,7 +117,7 @@ class AboutBoaHistoryScreen extends Screen
 
         return redirect()->route('about.boa.history');
     }
-   
+  
     public function remove(Request $request)
     {
          
