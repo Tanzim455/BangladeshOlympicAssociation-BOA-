@@ -31,6 +31,7 @@ use App\Orchid\Screens\StatuteEditScreen;
 
 
 use App\Orchid\Screens\ActivityScreen;
+use App\Orchid\Screens\ActivityEditScreen;
 /*
 |--------------------------------------------------------------------------
 | Dashboard Routes
@@ -126,3 +127,4 @@ Route::screen('/about-boa-history', AboutBoaHistoryScreen::class)->name('about.b
    Route::screen('statute/{id}/edit',StatuteEditScreen::class)->name('statute.edit');
 
      Route::screen('activities',ActivityScreen::class)->name('activity.index');
+      Route::screen('activities/{id}/edit',ActivityEditScreen::class)->name('activity.edit');
