@@ -31,9 +31,6 @@ class ActivityLayout extends Table
         return [
                TD::make('Slno')->render(fn (Activity $activity, object $loop) => $loop->index+1),
               TD::make('title', 'Title'),
-                
-           
-             TD::make('Description')->render(fn (Activity   $activity) => Str::substr($activity->description,0,200)),
                 TD::make('slug', 'Slug'),
              TD::make('photo', 'Photo')
     ->render(function (Activity $activity) {
@@ -49,7 +46,7 @@ class ActivityLayout extends Table
         
         return '<span class="text-muted">No Photo</span>';
     }),
-     TD::make('Is Active')->render(fn (Activity $activity) => $activity->is_active ? 'Active' : 'Inactive'),
+     TD::make('Status')->render(fn (Activity $activity) => $activity->status ? 'Active' : 'Inactive'),
      TD::make('Publishable')->render(fn (Activity $activity) => $activity->publishable ? 'Publishable' : 'Not publishable'),
      
         ];

@@ -99,7 +99,7 @@ class ActivityScreen extends Screen
                        
    
                       
-                         CheckBox::make('activity.is_active')
+                         CheckBox::make('activity.status')
     ->value(1)
     ->title('Is Active')
     ->placeholder('Is active')
@@ -125,9 +125,10 @@ class ActivityScreen extends Screen
         
         
         $request_statute=$request->get('activity');
+        dd($request_statute);
           $slug=Str::slug($request_statute['title']);
         $request_statute['slug']= $slug;
-        
+       
   
         $this->activity->fill($request_statute)->save();
         if (isset($this->activity)) {
@@ -137,6 +138,15 @@ class ActivityScreen extends Screen
         }
 
         Alert::info('Activity has been successfully created');
+
+        return redirect()->route('activity.index');
+    }
+
+    public function remove(Request $request)
+    {
+             Activity::findOrFail($request->get('id'))->delete();
+
+        Alert::info('You have successfully deleted the activity.');
 
         return redirect()->route('activity.index');
     }
