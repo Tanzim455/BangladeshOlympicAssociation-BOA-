@@ -74,12 +74,12 @@ TD::make('pdf', 'PDF File')
                             ])
                             ,
 
-                //         Button::make(__('Delete'))
+                        Button::make(__('Delete'))
                         
-                //             ->icon('bs.trash3')
-                //         ->method('remove', [
-                //     'id' => $about_boa_history->id,
-                // ]),
+                            ->icon('bs.trash3')
+                        ->method('remove', [
+                    'id' => $statute->id,
+                ]),
                            
                     ])),
         ];

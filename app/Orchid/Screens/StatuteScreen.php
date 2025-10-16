@@ -134,8 +134,8 @@ class StatuteScreen extends Screen
          
         Statute::findOrFail($request->get('id'))->delete();
 
-        Alert::info('You have successfully deleted the post.');
+        Alert::info('You have successfully deleted the statute.');
 
-        return redirect()->route('about.boa.history');
+        return redirect()->route('statute.index');
     }
 }
