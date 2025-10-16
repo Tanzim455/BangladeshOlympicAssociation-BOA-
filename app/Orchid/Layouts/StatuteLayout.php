@@ -5,7 +5,10 @@ namespace App\Orchid\Layouts;
 use Orchid\Screen\Layouts\Table;
 use Orchid\Screen\TD;
 use App\Models\Statute;
+use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Actions\Link;
+use Orchid\Screen\Actions\DropDown;
+
 class StatuteLayout extends Table
 {
     /**
@@ -57,30 +60,30 @@ TD::make('pdf', 'PDF File')
                
             TD::make('created_at', 'Created'),
             TD::make('updated_at', 'Last edit'),
-        //     TD::make(__('Actions'))
+            TD::make(__('Actions'))
                 
-        //         ->render(fn (AboutBoaHistory $about_boa_history) => DropDown::make()
-        //             ->icon('bs.three-dots-vertical')
-        //             ->list([
+                ->render(fn (Statute $statute) => DropDown::make()
+                    ->icon('bs.three-dots-vertical')
+                    ->list([
 
-        //                 Link::make(__('Edit'))
+                        Link::make(__('Edit'))
                             
-        //                     ->icon('bs.pencil')
-        //                     ->route('about.boa.history.edit', [
-        //                         'id' => $about_boa_history->id,
-        //                     ])
-        //                     ,
+                            ->icon('bs.pencil')
+                            ->route('statute.edit', [
+                                'id' => $statute->id,
+                            ])
+                            ,
 
-        //                 Button::make(__('Delete'))
+                //         Button::make(__('Delete'))
                         
-        //                     ->icon('bs.trash3')
-        //                 ->method('remove', [
-        //             'id' => $about_boa_history->id,
-        //         ]),
+                //             ->icon('bs.trash3')
+                //         ->method('remove', [
+                //     'id' => $about_boa_history->id,
+                // ]),
                            
-        //             ])),
-        // ];
-            ];
+                    ])),
+        ];
+            
     
 }
 }
