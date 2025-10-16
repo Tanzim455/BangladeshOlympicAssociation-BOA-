@@ -8,6 +8,7 @@ use Orchid\Screen\TD;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Actions\DropDown;
+use Illuminate\Support\Str;
 
 class AboutBoaHistoryListLayout extends Table
 {
@@ -42,7 +43,8 @@ class AboutBoaHistoryListLayout extends Table
             TD::make('Slno')->render(fn (AboutBoaHistory  $about_boa_history, object $loop) => $loop->index+1),
               TD::make('title', 'Title'),
            
-            TD::make('description', 'Description'),
+            // TD::make('description', 'Description'),
+             TD::make('Slno')->render(fn (AboutBoaHistory  $about_boa_history) => Str::substr($about_boa_history->description,0,200)),
                
             TD::make('created_at', 'Created'),
             TD::make('updated_at', 'Last edit'),
