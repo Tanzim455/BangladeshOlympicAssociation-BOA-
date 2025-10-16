@@ -48,6 +48,8 @@ class ActivityLayout extends Table
         
         return '<span class="text-muted">No Photo</span>';
     }),
+     TD::make('Is Active')->render(fn (Activity $activity) => $activity->is_active ? 'Active' : 'Inactive'),
+     TD::make('Publishable')->render(fn (Activity $activity) => $activity->publishable ? 'Publishable' : 'Not publishable'),
         ];
     }
 }
