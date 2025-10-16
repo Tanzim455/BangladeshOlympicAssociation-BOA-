@@ -944,6 +944,7 @@ namespace App\Models {
     /**
      * App\Models\Statute
      *
+     * @property bool|null $is_active
      * @property \Illuminate\Support\Carbon|null $updated_at
      * @property \Illuminate\Support\Carbon|null $created_at
      * @property string $title
@@ -952,6 +953,7 @@ namespace App\Models {
      * @method static \Illuminate\Database\Eloquent\Builder<Statute>|Statute whereTitle($value)
      * @method static \Illuminate\Database\Eloquent\Builder<Statute>|Statute whereCreatedAt($value)
      * @method static \Illuminate\Database\Eloquent\Builder<Statute>|Statute whereUpdatedAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<Statute>|Statute whereIsActive($value)
      * @method static \Illuminate\Database\Eloquent\Builder<Statute>|Statute newModelQuery()
      * @method static \Illuminate\Database\Eloquent\Builder<Statute>|Statute newQuery()
      * @method static \Illuminate\Database\Eloquent\Builder<Statute>|Statute query()

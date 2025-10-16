@@ -20,6 +20,7 @@ use Orchid\Attachment\File;
 use App\Orchid\Layouts\StatuteLayout;
 
 use Orchid\Screen\Fields\Upload;
+use Orchid\Screen\Fields\CheckBox;
 
 
 class StatuteScreen extends Screen
@@ -100,6 +101,11 @@ class StatuteScreen extends Screen
                         ->acceptedFiles('.pdf')
                         ->maxSize(5120) // 5MB
                         ->required(),
+                        CheckBox::make('statute.is_active')
+    ->value(1)
+    ->title('Is Active')
+    ->placeholder('Is active')
+    ->help('Event for free')
                
               
 
@@ -116,9 +122,14 @@ class StatuteScreen extends Screen
     public function createOrUpdate(Request $request)
     {
               
-        $this->statute->fill($request->get('statute'))->save();
         
-       
+        
+        $request_statute=$request->get('statute');
+        
+        if(isset($request_statute['is_active'])){
+            Statute::where('is_active', 1)->update(['is_active' => 0]);
+        }
+        $this->statute->fill($request->get('statute'))->save();
         if (isset($this->statute)) {
             $this->statute->attachments()->syncWithoutDetaching(
                 $request->input('statute.attachments', [])

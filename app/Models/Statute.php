@@ -11,6 +11,7 @@ class Statute extends Model
     use AsSource,Attachable;
         protected $fillable = [
         'title',
+        'is_active'
         
        
     ];
