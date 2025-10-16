@@ -115,7 +115,7 @@ class AboutBoaMissionScreen extends Screen
 
         Alert::info('You have successfully deleted the post.');
 
-        return redirect()->route('about.boa.history');
+        return redirect()->route('about.boa.mission');
     }
     
 }

@@ -122,7 +122,7 @@ class StatuteScreen extends Screen
 
         Alert::info('Statute has been successfully created');
 
-        return redirect()->route('about.boa.mission');
+        return redirect()->route('statute.index');
     }
     public function remove(Request $request)
     {

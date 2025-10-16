@@ -37,7 +37,7 @@ class StatuteLayout extends Table
     protected function columns(): iterable
     {
         return [
-            TD::make('id', 'ID'),
+             TD::make('Slno')->render(fn (Statute  $statute, object $loop) => $loop->index+1),
              TD::make('title', 'Title'),  
           
                

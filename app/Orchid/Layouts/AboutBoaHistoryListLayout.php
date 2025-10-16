@@ -39,7 +39,7 @@ class AboutBoaHistoryListLayout extends Table
        public function columns(): array
     {
         return [
-            TD::make('id', 'ID'),
+            TD::make('Slno')->render(fn (AboutBoaHistory  $about_boa_history, object $loop) => $loop->index+1),
               TD::make('title', 'Title'),
            
             TD::make('description', 'Description'),

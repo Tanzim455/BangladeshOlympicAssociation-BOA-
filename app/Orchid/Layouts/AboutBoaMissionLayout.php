@@ -39,7 +39,7 @@ class AboutBoaMissionLayout extends Table
        public function columns(): array
     {
         return [
-            TD::make('id', 'ID'),
+            TD::make('Slno')->render(fn (AboutBoaMission $about_boa_mission, object $loop) => $loop->index+1),
               TD::make('title', 'Title'),
                 
             TD::make('description', 'Description'),
