@@ -57,7 +57,7 @@ TD::make('pdf', 'PDF File')
                 
                 return '<span class="text-muted">No PDF</span>';
             }),
-               
+               TD::make('Is Active')->render(fn (Statute $statute) => $statute->is_active ? 'Active' : 'Inactive'),
             TD::make('created_at', 'Created'),
             TD::make('updated_at', 'Last edit'),
             TD::make(__('Actions'))
