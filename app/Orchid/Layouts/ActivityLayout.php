@@ -32,8 +32,9 @@ class ActivityLayout extends Table
                TD::make('Slno')->render(fn (Activity $activity, object $loop) => $loop->index+1),
               TD::make('title', 'Title'),
                 
-            // TD::make('description', 'Description'),
-             TD::make('Slno')->render(fn (Activity   $activity) => Str::substr($activity->description,0,200)),
+           
+             TD::make('Description')->render(fn (Activity   $activity) => Str::substr($activity->description,0,200)),
+                TD::make('slug', 'Slug'),
              TD::make('photo', 'Photo')
     ->render(function (Activity $activity) {
         $attachment = $activity->attachments()->first();
@@ -50,6 +51,7 @@ class ActivityLayout extends Table
     }),
      TD::make('Is Active')->render(fn (Activity $activity) => $activity->is_active ? 'Active' : 'Inactive'),
      TD::make('Publishable')->render(fn (Activity $activity) => $activity->publishable ? 'Publishable' : 'Not publishable'),
+     
         ];
     }
 }
