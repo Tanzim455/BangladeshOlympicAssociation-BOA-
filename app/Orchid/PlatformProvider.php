@@ -61,7 +61,7 @@ class PlatformProvider extends OrchidServiceProvider
             Menu::make('Activities')
                 ->icon('bs.window-sidebar')
                  ->divider()
-                ->route('platform.example.layouts'),
+                ->route('activity.index'),
 
             Menu::make('Affiliated Organization')
                 ->icon('bs.columns-gap')
