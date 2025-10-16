@@ -34,6 +34,20 @@ class ActivityLayout extends Table
                 
             // TD::make('description', 'Description'),
              TD::make('Slno')->render(fn (Activity   $activity) => Str::substr($activity->description,0,200)),
+             TD::make('photo', 'Photo')
+    ->render(function (Activity $activity) {
+        $attachment = $activity->attachments()->first();
+        
+        if ($attachment) {
+            return '<img src="' . $attachment->url() . '" 
+                        alt="Photo" 
+                        width="50" 
+                        height="50" 
+                        style="border-radius: 8px; object-fit: cover;">';
+        }
+        
+        return '<span class="text-muted">No Photo</span>';
+    }),
         ];
     }
 }
