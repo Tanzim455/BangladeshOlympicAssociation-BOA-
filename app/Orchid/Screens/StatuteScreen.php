@@ -19,6 +19,8 @@ use Orchid\Screen\Layouts\Rows;
 use Orchid\Attachment\File;
 use App\Orchid\Layouts\StatuteLayout;
 
+use Orchid\Screen\Fields\Upload;
+
 
 class StatuteScreen extends Screen
 {
@@ -38,6 +40,7 @@ class StatuteScreen extends Screen
       
     public function query(Statute $statute): iterable
     {
+        $statute->load('attachments');
       
          return [
             'statute' => $statute,
@@ -86,14 +89,21 @@ class StatuteScreen extends Screen
             Layout::rows([
                 Input::make('statute.title')
                     ->title('Title')
+                     ->required()
                     ->placeholder('Attractive but mysterious title')
                     ->help('Specify a short descriptive title for this post.'),
 
                
-
+                         Upload::make('statute.attachments')
+                         ->groups('pdf')
+                          ->title('All files')
+                        ->acceptedFiles('.pdf')
+                        ->maxSize(5120) // 5MB
+                        ->required(),
+               
               
 
-               Input::make('statute.file')->type('file'),
+               
 
             ]),
             
@@ -105,20 +115,15 @@ class StatuteScreen extends Screen
     }
     public function createOrUpdate(Request $request)
     {
-               
-        $validate= $request->validate([
-            'statute.title' => 'required',
-          
-        ]);
-        $request_all=$request->all();
-        $requested_file=$request_all['statute']['file'];
-      
-       $path = "pdfs";
-    $file = new File($requested_file);
- 
-    $attachment = $file->path($path)->load();
-        
+              
         $this->statute->fill($request->get('statute'))->save();
+        
+       
+        if (isset($this->statute)) {
+            $this->statute->attachments()->syncWithoutDetaching(
+                $request->input('statute.attachments', [])
+            );
+        }
 
         Alert::info('Statute has been successfully created');
 

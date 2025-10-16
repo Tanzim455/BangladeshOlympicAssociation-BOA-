@@ -60,6 +60,7 @@ class AboutBoaMissionEditScreen extends Screen
     {
         return [
             Button::make('Update')
+                 ->class('btn-primary')
                 ->icon('note')
                 ->method('updateMission')
                 

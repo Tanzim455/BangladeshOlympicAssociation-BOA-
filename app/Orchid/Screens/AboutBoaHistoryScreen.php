@@ -61,6 +61,7 @@ class AboutBoaHistoryScreen extends Screen
         return [
            
                  ModalToggle::make('Add History')
+                 
             ->modal('Add History')
             ->method('createOrUpdate')
             ->icon('plus'),
