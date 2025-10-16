@@ -34,7 +34,7 @@ class ActivityEditScreen extends Screen
     {
       
          return [
-            'about_boa_mission' => Activity::findOrFail($this->request_id),
+            'activity' => Activity::findOrFail($this->request_id),
              
         ];
     
@@ -72,8 +72,23 @@ class ActivityEditScreen extends Screen
      *
      * @return \Orchid\Screen\Layout[]|string[]
      */
-    public function layout(): iterable
+   public function layout(): iterable
     {
-        return [];
+        return [
+             Layout::rows([
+                Input::make('activity.title')
+                    ->title('Title')
+                    ->placeholder('Attractive but mysterious title')
+                    ->help('Specify a short descriptive title for this post.'),
+
+               
+
+              
+
+                Quill::make('activity.description')
+                    ->title('Description'),
+
+            ])
+             ];
     }
 }

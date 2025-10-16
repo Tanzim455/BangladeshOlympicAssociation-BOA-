@@ -48,6 +48,28 @@ class ActivityLayout extends Table
     }),
      TD::make('Status')->render(fn (Activity $activity) => $activity->status ? 'Active' : 'Inactive'),
      TD::make('Publishable')->render(fn (Activity $activity) => $activity->publishable ? 'Publishable' : 'Not publishable'),
+       TD::make(__('Actions'))
+                
+                ->render(fn (Activity $activity) => DropDown::make()
+                    ->icon('bs.three-dots-vertical')
+                    ->list([
+
+                        Link::make(__('Edit'))
+                            
+                            ->icon('bs.pencil')
+                            ->route('activity.edit', [
+                                'id' => $activity->id,
+                            ])
+                            ,
+
+                        Button::make(__('Delete'))
+                        
+                            ->icon('bs.trash3')
+                        ->method('remove', [
+                    'id' => $activity->id,
+                ]),
+                           
+                    ])),
      
         ];
     }
