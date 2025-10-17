@@ -12,6 +12,8 @@ use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Layouts\Modal;
 use Orchid\Support\Facades\Layout;
 use Illuminate\Http\Request;
+use Orchid\Screen\Fields\Upload;
+use Orchid\Screen\Fields\CheckBox;
 
 class ActivityEditScreen extends Screen
 {
@@ -87,8 +89,29 @@ class ActivityEditScreen extends Screen
 
                 Quill::make('activity.description')
                     ->title('Description'),
-
-            ])
+                  Upload::make('activity.attachments')
+                       
+                          ->title('Photos')
+                           ->acceptedFiles('.jpg,.jpeg,.png')
+                        ->maxSize(5120) // 5MB
+                        ->required(),
+                          CheckBox::make('activity.status')
+    ->value(1)
+    ->title('Is Active')
+    ->placeholder('Is active')
+    ,
+                        CheckBox::make('activity.publishable')
+    ->value(1)
+    ->title('Publishable')
+    ->placeholder('Is publishable')
+             ]),
+             
+            
              ];
+    }
+
+    public function updateActivity(Request $request)
+    {
+
     }
 }
