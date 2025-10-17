@@ -93,7 +93,7 @@ class ActivityScreen extends Screen
                      Upload::make('activity.attachments')
                        
                           ->title('Photos')
-                            ->acceptedFiles('.jpg')
+                           ->acceptedFiles('.jpg,.jpeg,.png')
                         ->maxSize(5120) // 5MB
                         ->required(),
                        
@@ -123,9 +123,16 @@ class ActivityScreen extends Screen
     {
               
         
-        
+        $request->validate([
+            'activity.title' => 'required',
+            'activity.attachments' => 'required',
+            'activity.description' => 'required',
+            'activity.status'=>'nullable|boolean',
+            'activity.publishable'=>'nullable|boolean',
+            
+        ]);
         $request_statute=$request->get('activity');
-        dd($request_statute);
+       
           $slug=Str::slug($request_statute['title']);
         $request_statute['slug']= $slug;
        
