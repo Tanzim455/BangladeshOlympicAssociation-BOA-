@@ -131,13 +131,14 @@ class ActivityScreen extends Screen
             'activity.publishable'=>'nullable|boolean',
             
         ]);
-        $request_statute=$request->get('activity');
+        $request_activity=$request->get('activity');
        
-          $slug=Str::slug($request_statute['title']);
-        $request_statute['slug']= $slug;
+          $slug=Str::slug($request_activity['title']);
+        $request_activity['slug']= $slug;
        
-  
-        $this->activity->fill($request_statute)->save();
+         
+        $this->activity->fill($request_activity)->save();
+        
         if (isset($this->activity)) {
             $this->activity->attachments()->syncWithoutDetaching(
                 $request->input('activity.attachments', [])

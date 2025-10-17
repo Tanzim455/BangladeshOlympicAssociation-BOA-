@@ -14,6 +14,8 @@ use Orchid\Support\Facades\Layout;
 use Illuminate\Http\Request;
 use Orchid\Screen\Fields\Upload;
 use Orchid\Screen\Fields\CheckBox;
+use Orchid\Attachment\Models\Attachment;
+use Illuminate\Support\Str;
 
 class ActivityEditScreen extends Screen
 {
@@ -25,7 +27,7 @@ class ActivityEditScreen extends Screen
      /**
      * @var AboutBoaHistory
      */
-    public $about_boa_mission;
+    public $activity;
     public $request_id;
 
     public function __construct(){
@@ -112,6 +114,39 @@ class ActivityEditScreen extends Screen
 
     public function updateActivity(Request $request)
     {
+       
+      $validate =$request->validate([
+            'activity.title' => 'required',
+            'activity.attachments' => 'required',
+            'activity.description' => 'required',
+            'activity.status'=>'nullable|boolean',
+            'activity.publishable'=>'nullable|boolean',
+            
+        ]);
+        $request_activity=$request->get('activity');
+       
+          $slug=Str::slug($request_activity['title']);
+        $request_activity['slug']= $slug;
+        if(!isset($request_activity['status']) ){
+            $request_activity['status']=0;
+        }
+        if(!isset($request_activity['publishable']) ){
+            $request_activity['publishable']=0;
+        }
+      
+        $this->activity->fill($request_activity)->save();
+        if(isset($request_activity['attachments'])){
+          
+            if (isset($this->activity)) {
+            $this->activity->attachments()->syncWithoutDetaching(
+                $request->input('activity.attachments', [])
+            );
+        }
+        }
+        
 
+        
+
+        return redirect()->route('activity.index');
     }
 }
