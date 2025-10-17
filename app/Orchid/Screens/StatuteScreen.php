@@ -90,22 +90,22 @@ class StatuteScreen extends Screen
             Layout::rows([
                 Input::make('statute.title')
                     ->title('Title')
-                     ->required()
+                     
                     ->placeholder('Attractive but mysterious title')
-                    ->help('Specify a short descriptive title for this post.'),
+                    ->help('Specify a short  title for this post.'),
 
                
                          Upload::make('statute.attachments')
                          ->groups('pdf')
                           ->title('All files')
                         ->acceptedFiles('.pdf')
-                        ->maxSize(5120) // 5MB
-                        ->required(),
+                        ->maxSize(5120),// 5MB
+                       
                         CheckBox::make('statute.is_active')
     ->value(1)
     ->title('Is Active')
     ->placeholder('Is active')
-    ->help('Event for free')
+  
                
               
 
@@ -122,11 +122,15 @@ class StatuteScreen extends Screen
     public function createOrUpdate(Request $request)
     {
               
-        
+        $validate= $request->validate([
+            'statute.title' => 'required',
+            'statute.attachments' => 'required',
+            'statute.is_active'=>'nullable|boolean'
+        ]);
         
         $request_statute=$request->get('statute');
         
-        if(isset($request_statute['is_active'])){
+        if(isset($request_statute['statute.is_active'])){
             Statute::where('is_active', 1)->update(['is_active' => 0]);
         }
         $this->statute->fill($request->get('statute'))->save();
