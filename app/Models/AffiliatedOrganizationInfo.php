@@ -3,10 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Orchid\Attachment\Attachable;
 
 class AffiliatedOrganizationInfo extends Model
 {
     //
+    use Attachable;
     protected $fillable = [
     'logo',
     'president_name',

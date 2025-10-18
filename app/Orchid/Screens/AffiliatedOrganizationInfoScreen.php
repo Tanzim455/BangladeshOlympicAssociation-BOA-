@@ -23,6 +23,7 @@ use Orchid\Attachment\File;
 use Orchid\Screen\Fields\Select;
 
 
+
 class AffiliatedOrganizationInfoScreen extends Screen
 {
     /**
@@ -86,17 +87,18 @@ class AffiliatedOrganizationInfoScreen extends Screen
                     ->title('Title')
                     ->placeholder('Attractive but mysterious title')
                     ->help('Specify a short descriptive title for this post.'),
-                    Upload::make('affiliated_organization_info.logo')
+                   Upload::make('affiliated_organization_info.attachments')
+    ->type('file')
+    ->title('Logo')
+    ->acceptedFiles('.jpg,.jpeg,.png')
+    ->maxSize(5120) // 5MB
+   ,
                        
-                          ->title('Logo')
-                           ->acceptedFiles('.jpg,.jpeg,.png')
-                        ->maxSize(5120) // 5MB
-                       ,
                          Input::make('affiliated_organization_info.president_name')
                     ->title('Presidents Name')
                     ->placeholder('Presidents Name')
                     ->help('Specify a short descriptive title for this post.'),
-                     Upload::make('affiliated_organization_info.preswident_image')
+                     Upload::make('affiliated_organization_info.president_image')
                        
                           ->title('President Photo')
                            ->acceptedFiles('.jpg,.jpeg,.png')
@@ -157,5 +159,26 @@ class AffiliatedOrganizationInfoScreen extends Screen
             
         ];
         
+    }
+
+    public function createOrUpdate(Request $request)
+    {
+        
+        $request_activity=$request->get('affiliated_organization_info');
+        $this->affiliated_organization_info->fill($request_activity)->save();
+           
+               if (isset($this->affiliated_organization_info)) {
+            $this->affiliated_organization_info->attachments()->syncWithoutDetaching(
+                $request->input('affiliated_organization_info.attachments', [])
+            );
+           
+        }
+          
+            
+        
+        Alert::info('Afiiliated organization successfully saved has been successfully created');
+
+        return redirect()->route('affilatedorganizationinfo.index');
+     
     }
 }

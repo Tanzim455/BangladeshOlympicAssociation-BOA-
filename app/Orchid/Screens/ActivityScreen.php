@@ -143,6 +143,7 @@ class ActivityScreen extends Screen
             $this->activity->attachments()->syncWithoutDetaching(
                 $request->input('activity.attachments', [])
             );
+           
         }
 
         Alert::info('Activity has been successfully created');

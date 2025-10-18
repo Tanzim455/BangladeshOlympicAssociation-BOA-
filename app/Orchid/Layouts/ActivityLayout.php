@@ -34,6 +34,7 @@ class ActivityLayout extends Table
                 TD::make('slug', 'Slug'),
              TD::make('photo', 'Photo')
     ->render(function (Activity $activity) {
+      
         $attachment = $activity->attachments()->first();
         
         if ($attachment) {
