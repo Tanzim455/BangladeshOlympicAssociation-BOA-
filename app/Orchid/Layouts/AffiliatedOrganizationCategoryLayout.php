@@ -55,13 +55,12 @@ class AffiliatedOrganizationCategoryLayout extends Table
                     ->icon('bs.three-dots-vertical')
                     ->list([
 
-                        // Link::make(__('Edit'))
+                        Link::make(__('Edit'))
                             
-                        //     ->icon('bs.pencil')
-                        //     ->route('activity.edit', [
-                        //         'id' => $activity->id,
-                        //     ])
-                        //     ,
+                            ->icon('bs.pencil')
+                            ->route('affilatedorganizationcategory.edit', [
+                                'id' => $affiliated_category->id,
+                            ]),
 
                         Button::make(__('Delete'))
                         

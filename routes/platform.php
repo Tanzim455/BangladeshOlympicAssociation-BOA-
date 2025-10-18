@@ -34,7 +34,12 @@ use App\Orchid\Screens\ActivityScreen;
 use App\Orchid\Screens\ActivityEditScreen;
 
 
+
+
 use App\Orchid\Screens\AffiliatedOrganizationCategoryScreen;
+use App\Orchid\Screens\AffiliatedOrganizationCategoryEditScreen;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -134,4 +139,6 @@ Route::screen('/about-boa-history', AboutBoaHistoryScreen::class)->name('about.b
       Route::screen('activities/{id}/edit',ActivityEditScreen::class)->name('activity.edit');
 
        Route::screen('affiilated-organization-categories',AffiliatedOrganizationCategoryScreen::class)->name('affilatedorganizationcategory.index');
-        // Route::screen('affinilated-organization-categories/{id}/edit',AffilatedOrganizationCategoryvityScreen::class)->name('activity.index');
+         Route::screen('affilated-organization-categories/{id}/edit', AffiliatedOrganizationCategoryEditScreen::class)->name('affilatedorganizationcategory.edit');
+
+        
