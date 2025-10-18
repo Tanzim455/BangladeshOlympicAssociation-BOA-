@@ -40,7 +40,7 @@ use App\Orchid\Screens\AffiliatedOrganizationCategoryScreen;
 use App\Orchid\Screens\AffiliatedOrganizationCategoryEditScreen;
 
 
-
+use App\Orchid\Screens\AffiliatedOrganizationInfoScreen;
 /*
 |--------------------------------------------------------------------------
 | Dashboard Routes
@@ -138,7 +138,8 @@ Route::screen('/about-boa-history', AboutBoaHistoryScreen::class)->name('about.b
      Route::screen('activities',ActivityScreen::class)->name('activity.index');
       Route::screen('activities/{id}/edit',ActivityEditScreen::class)->name('activity.edit');
 
-       Route::screen('affiilated-organization-categories',AffiliatedOrganizationCategoryScreen::class)->name('affilatedorganizationcategory.index');
+       Route::screen('affiilated-organization-categories',AffiliatedOrganizationCategoryScreen::class)->name('affiliatedorganizationcategory.index');
          Route::screen('affilated-organization-categories/{id}/edit', AffiliatedOrganizationCategoryEditScreen::class)->name('affilatedorganizationcategory.edit');
 
-        
+    
+               Route::screen('affiilated-organization-info',AffiliatedOrganizationInfoScreen::class)->name('affilatedorganizationinfo.index');

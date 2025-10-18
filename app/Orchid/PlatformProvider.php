@@ -63,19 +63,19 @@ class PlatformProvider extends OrchidServiceProvider
                  ->divider()
                 ->route('activity.index'),
 
-            Menu::make('Affiliated Organization')
+            Menu::make('Affiliated Organizationss')
                 ->icon('bs.columns-gap')
-                 ->divider()
-                ->route('affilatedorganizationcategory.index'),
+                 ->divider(),
+               
 
             Menu::make('Category')
-                    
+                     ->route('affiliatedorganizationcategory.index')
                 ->icon('bs.bar-chart')
                 ->route('platform.example.charts'),
 
             Menu::make('Information')
                 ->icon('bs.card-text')
-                ->route('platform.example.cards')
+                ->route('affilatedorganizationinfo.index')
                 ->divider(),
 
             Menu::make(__('Users'))
