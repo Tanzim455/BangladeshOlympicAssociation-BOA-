@@ -1576,6 +1576,7 @@ namespace App\Models {
     /**
      * App\Models\AffiliatedOrganizationInfo
      *
+     * @property string $youtube_link
      * @property \Illuminate\Support\Carbon|null $updated_at
      * @property \Illuminate\Support\Carbon|null $created_at
      * @property int $affiliated_organization_category_id
@@ -1608,6 +1609,7 @@ namespace App\Models {
      * @method static \Illuminate\Database\Eloquent\Builder<AffiliatedOrganizationInfo>|AffiliatedOrganizationInfo whereAffiliatedOrganizationCategoryId($value)
      * @method static \Illuminate\Database\Eloquent\Builder<AffiliatedOrganizationInfo>|AffiliatedOrganizationInfo whereCreatedAt($value)
      * @method static \Illuminate\Database\Eloquent\Builder<AffiliatedOrganizationInfo>|AffiliatedOrganizationInfo whereUpdatedAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<AffiliatedOrganizationInfo>|AffiliatedOrganizationInfo whereYoutubeLink($value)
      * @method static \Illuminate\Database\Eloquent\Builder<AffiliatedOrganizationInfo>|AffiliatedOrganizationInfo newModelQuery()
      * @method static \Illuminate\Database\Eloquent\Builder<AffiliatedOrganizationInfo>|AffiliatedOrganizationInfo newQuery()
      * @method static \Illuminate\Database\Eloquent\Builder<AffiliatedOrganizationInfo>|AffiliatedOrganizationInfo query()

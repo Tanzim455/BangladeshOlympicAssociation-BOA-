@@ -12,6 +12,7 @@ use Orchid\Screen\Layouts\Modal;
 use Orchid\Screen\Fields\Quill;
 use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Layouts\Rows;
+use App\Models\AffiliatedOrganizationCategory;
 use App\Models\AffiliatedOrganizationInfo;
 use Orchid\Screen\Fields\Upload;
 use Orchid\Screen\Fields\CheckBox;
@@ -19,7 +20,7 @@ use Orchid\Screen\Fields\CheckBox;
 // use App\Orchid\Layouts\ActivityLayout;
 use Orchid\Screen\Fields\Attach;
 use Orchid\Attachment\File;
-
+use Orchid\Screen\Fields\Select;
 
 
 class AffiliatedOrganizationInfoScreen extends Screen
@@ -137,7 +138,9 @@ class AffiliatedOrganizationInfoScreen extends Screen
                     Input::make('affiliated_organization_info.instagram_link')
                     ->title('Instagram Link')
                     ->placeholder('Enter Instagarm link'),
-
+                   Select::make('affiliated_organization_info.affiliated_organization_category_id')
+                   ->title('Select a Category')
+    ->fromModel(AffiliatedOrganizationCategory::class, 'name')
 
                
     

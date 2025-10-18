@@ -19,7 +19,9 @@ class AffiliatedOrganizationInfo extends Model
     'email',
     'website',
     'facebook_link',
-    'instagram_link', // Fixed: only once!
+    'instagram_link',
+    'youtube_link',
+    
     'affiliated_organization_category_id', // Foreign key
 ];
 }
