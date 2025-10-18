@@ -49,6 +49,28 @@ class AffiliatedOrganizationCategoryLayout extends Table
                
             TD::make('created_at', 'Created'),
             TD::make('updated_at', 'Last edit'),
+            TD::make(__('Actions'))
+                
+                ->render(fn (AffiliatedOrganizationCategory $affiliated_category) => DropDown::make()
+                    ->icon('bs.three-dots-vertical')
+                    ->list([
+
+                        // Link::make(__('Edit'))
+                            
+                        //     ->icon('bs.pencil')
+                        //     ->route('activity.edit', [
+                        //         'id' => $activity->id,
+                        //     ])
+                        //     ,
+
+                        Button::make(__('Delete'))
+                        
+                            ->icon('bs.trash3')
+                        ->method('remove', [
+                    'id' => $affiliated_category->id,
+                ]),
+                           
+                    ])),
         ];
     }
 }
